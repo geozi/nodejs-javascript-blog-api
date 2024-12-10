@@ -1,0 +1,29 @@
+{
+  "name": "javascript-blog-api",
+  "version": "1.0.0",
+  "description": "This project contains the backend implementation of a blog service API.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "npm start",
+    "test": "nyc jasmine",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "RESTful API"
+  ],
+  "author": "geozi",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^5.5.0",
+    "jasmine-browser-runner": "^2.5.0",
+    "mockingoose": "^2.16.2",
+    "nodemon": "^3.1.7",
+    "nyc": "^17.1.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-validator": "^7.2.0",
+    "mongoose": "^7.8.3",
+    "mongoose-unique-validator": "^4.0.1"
+  }
+}
