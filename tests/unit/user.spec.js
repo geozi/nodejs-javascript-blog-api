@@ -75,15 +75,24 @@ describe("User model tests:", () => {
 
   describe("invalid email", () => {
     const emailInvalidCases = [
-      ["should not match regex -> no prefix", new User({ email: "@mail.com" })],
-      ["should not match regex -> no @", new User({ email: "randommailcom" })],
       [
-        "should not match regex -> no domain name",
+        "should not pass validation -> no prefix",
+        new User({ email: "@mail.com" }),
+      ],
+      [
+        "should not pass validation -> no @",
+        new User({ email: "randommailcom" }),
+      ],
+      [
+        "should not pass validation-> no domain name",
         new User({ email: "random@.com" }),
       ],
-      ["should not match regex -> no .", new User({ email: "random@mailcom" })],
       [
-        "should not match regex -> not top level domain",
+        "should not pass validation -> no .",
+        new User({ email: "random@mailcom" }),
+      ],
+      [
+        "should not pass validation -> not top level domain",
         new User({ email: "random@mail." }),
       ],
     ];
@@ -96,6 +105,50 @@ describe("User model tests:", () => {
         expect(err.errors.email).toBeDefined();
         expect(err.errors.email.message).toBe(
           validationErrorMessages.EMAIL_INVALID
+        );
+      });
+    });
+  });
+
+  describe("valid password", () => {
+    it("should pass validation", () => {
+      const user = new User({
+        password: "{3&LGNaC4+Okhzh",
+      });
+
+      const err = user.validateSync();
+      expect(err).toBeUndefined();
+    });
+  });
+
+  describe("invalid password", () => {
+    const passwordInvalidCases = [
+      [
+        "should not pass validation -> no lowercase characters",
+        new User({ password: "MPZVVPTZHGUSJJY" }),
+      ],
+      [
+        "should not pass validation -> no uppercase characters",
+        new User({ password: "lb,$rj469pr11v;" }),
+      ],
+      [
+        "should not pass validation -> no numbers",
+        new User({ password: "+c&uYXi~nVbUNBq" }),
+      ],
+      [
+        "should not pass validation -> no special characters",
+        new User({ password: "eOJw0yjymc1zcUP" }),
+      ],
+    ];
+
+    passwordInvalidCases.forEach(([testName, input]) => {
+      it(testName, () => {
+        const user = input;
+        const err = user.validateSync();
+        expect(err).toBeDefined();
+        expect(err.errors.password).toBeDefined();
+        expect(err.errors.password.message).toBe(
+          validationErrorMessages.PASSWORD_MUST_HAVE_CHARACTERS
         );
       });
     });
