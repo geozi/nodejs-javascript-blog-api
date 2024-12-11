@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "npm start",
-    "test": "nyc jasmine",
+    "test": "jasmine",
+    "testWithCoverage": "nyc jasmine",
     "dev": "nodemon src/app.js"
   },
   "keywords": [
@@ -15,7 +16,6 @@
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^5.5.0",
-    "jasmine-browser-runner": "^2.5.0",
     "mockingoose": "^2.16.2",
     "nodemon": "^3.1.7",
     "nyc": "^17.1.0"

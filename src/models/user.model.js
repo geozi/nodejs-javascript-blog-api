@@ -6,8 +6,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uniqueValidator = require("mongoose-unique-validator");
-const validationErrorMessages = require("../config/validationErrorMessages");
-const { PASSWORD_REGEX, EMAIL_REGEX } = require("../config/validationRegExp");
+const validationErrorMessages = require("../resources/validationErrorMessages");
+const {
+  PASSWORD_REGEX,
+  EMAIL_REGEX,
+} = require("../resources/validationRegExp");
 
 const userSchema = new Schema(
   {
