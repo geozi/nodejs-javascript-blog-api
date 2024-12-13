@@ -109,48 +109,4 @@ describe("User model tests:", () => {
       });
     });
   });
-
-  describe("valid password", () => {
-    it("should pass validation", () => {
-      const user = new User({
-        password: "{3&LGNaC4+Okhzh",
-      });
-
-      const err = user.validateSync();
-      expect(err).toBeUndefined();
-    });
-  });
-
-  describe("invalid password", () => {
-    const passwordInvalidCases = [
-      [
-        "should not pass validation -> no lowercase characters",
-        new User({ password: "MPZVVPTZHGUSJJY" }),
-      ],
-      [
-        "should not pass validation -> no uppercase characters",
-        new User({ password: "lb,$rj469pr11v;" }),
-      ],
-      [
-        "should not pass validation -> no numbers",
-        new User({ password: "+c&uYXi~nVbUNBq" }),
-      ],
-      [
-        "should not pass validation -> no special characters",
-        new User({ password: "eOJw0yjymc1zcUP" }),
-      ],
-    ];
-
-    passwordInvalidCases.forEach(([testName, input]) => {
-      it(testName, () => {
-        const user = input;
-        const err = user.validateSync();
-        expect(err).toBeDefined();
-        expect(err.errors.password).toBeDefined();
-        expect(err.errors.password.message).toBe(
-          validationErrorMessages.PASSWORD_MUST_HAVE_CHARACTERS
-        );
-      });
-    });
-  });
 });

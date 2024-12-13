@@ -7,10 +7,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uniqueValidator = require("mongoose-unique-validator");
 const validationErrorMessages = require("../resources/validationErrorMessages");
-const {
-  PASSWORD_REGEX,
-  EMAIL_REGEX,
-} = require("../resources/validationRegExp");
+const { EMAIL_REGEX } = require("../resources/validationRegExp");
 
 const userSchema = new Schema(
   {
@@ -29,10 +26,6 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      match: [
-        PASSWORD_REGEX,
-        validationErrorMessages.PASSWORD_MUST_HAVE_CHARACTERS,
-      ],
       trim: true,
     },
   },

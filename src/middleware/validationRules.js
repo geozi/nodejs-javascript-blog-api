@@ -5,6 +5,7 @@
 
 const { check } = require("express-validator");
 const validationErrorMessages = require("../resources/validationErrorMessages");
+const { PASSWORD_REGEX } = require("../resources/validationRegExp");
 
 const userRegistrationRules = () => {
   return [
@@ -16,7 +17,9 @@ const userRegistrationRules = () => {
       .withMessage(validationErrorMessages.EMAIL_REQUIRED),
     check("password")
       .notEmpty()
-      .withMessage(validationErrorMessages.PASSWORD_REQUIRED),
+      .withMessage(validationErrorMessages.PASSWORD_REQUIRED)
+      .matches(PASSWORD_REGEX)
+      .withMessage(validationErrorMessages.PASSWORD_IS_WEAK),
   ];
 };
 

@@ -16,6 +16,9 @@ module.exports = {
   EMAIL_REQUIRED: "Email is a required field",
   EMAIL_INVALID: "Invalid email address",
   PASSWORD_REQUIRED: "Password is a required field",
-  PASSWORD_MUST_HAVE_CHARACTERS:
-    "Password must contain at least one lowercase character, one uppercase character, one number, and a special symbol.",
+  PASSWORD_IS_WEAK: `Password must be at least 7 characters long and must contain at least:
+     one lowercase character, 
+     one uppercase character, 
+     one number, 
+     and a special symbol.`,
 };

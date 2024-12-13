@@ -40,7 +40,7 @@ const create = [
         const mongooseErrors = Object.values(err.errors).map((e) => ({
           msg: e.message,
         }));
-        console.log(mongooseErrors);
+
         return res.status(400).json({ errors: mongooseErrors });
       }
       return res
