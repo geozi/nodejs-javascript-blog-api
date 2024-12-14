@@ -21,4 +21,7 @@ module.exports = {
      one uppercase character, 
      one number, 
      and a special symbol.`,
+  ID_REQUIRED: "ID is a required field",
+  ID_INVALID: "ID must only contain alphanumeric characters",
+  ID_LENGTH: "ID must be 24 characters",
 };

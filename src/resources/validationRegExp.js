@@ -10,7 +10,10 @@ const EMAIL_REGEX = new RegExp(
   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 );
 
+const ID_REGEX = new RegExp(/^[0-9a-fA-F]{1,}$/);
+
 module.exports = {
   PASSWORD_REGEX,
   EMAIL_REGEX,
+  ID_REGEX,
 };
