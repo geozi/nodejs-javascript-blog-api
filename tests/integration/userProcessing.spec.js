@@ -1,7 +1,11 @@
+/**
+ * Performing integration tests on the
+ * user controller.
+ */
+
 const mongoose = require("mongoose");
 const User = require("../../src/models/user.model");
 const { create } = require("../../src/controllers/user.controller");
-const responseMessages = require("../../src/resources/responseMessages");
 const validationErrorMessages = require("../../src/resources/validationErrorMessages");
 require("dotenv").config();
 
