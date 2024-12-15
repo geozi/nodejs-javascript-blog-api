@@ -6,6 +6,7 @@
 const { check } = require("express-validator");
 const validationErrorMessages = require("../resources/validationErrorMessages");
 const { PASSWORD_REGEX, ID_REGEX } = require("../resources/validationRegExp");
+const authMessages = require("../resources/authMessages");
 
 const userRegistrationRules = () => {
   return [
@@ -15,6 +16,19 @@ const userRegistrationRules = () => {
     check("email")
       .notEmpty()
       .withMessage(validationErrorMessages.EMAIL_REQUIRED),
+    check("password")
+      .notEmpty()
+      .withMessage(validationErrorMessages.PASSWORD_REQUIRED)
+      .matches(PASSWORD_REGEX)
+      .withMessage(validationErrorMessages.PASSWORD_IS_WEAK),
+  ];
+};
+
+const userLoginRules = () => {
+  return [
+    check("username")
+      .notEmpty()
+      .withMessage(validationErrorMessages.USERNAME_REQUIRED),
     check("password")
       .notEmpty()
       .withMessage(validationErrorMessages.PASSWORD_REQUIRED)
@@ -64,9 +78,19 @@ const postDeletionRules = () => {
   ];
 };
 
+const headerValidationRules = () => {
+  return [
+    check("Authorization")
+      .notEmpty()
+      .withMessage(authMessages.AUTH_HEADER_REQUIRED),
+  ];
+};
+
 module.exports = {
   userRegistrationRules,
+  userLoginRules,
   postCreationRules,
   postUpdateRules,
   postDeletionRules,
+  headerValidationRules,
 };
