@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 const { router } = require("../src/routes/route");
 
@@ -14,6 +15,7 @@ async function connectToDb() {
   }
 }
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", router);
 

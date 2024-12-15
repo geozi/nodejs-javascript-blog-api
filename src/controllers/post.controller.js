@@ -130,12 +130,14 @@ const deletePost = [
     try {
       const { id } = req.body;
       const deletedPost = await Post.findByIdAndDelete(id);
+
       if (!deletedPost) {
         return res
           .status(404)
           .json({ message: responseMessages.POST_NOT_FOUND });
       }
-      return res.status(204).json({ message: responseMessages.POST_DELETED });
+
+      return res.status(204).json({});
     } catch (err) {
       if (err.name == "ValidationError") {
         const mongooseErrors = Object.values(err.errors).map((e) => ({

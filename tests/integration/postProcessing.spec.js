@@ -425,9 +425,6 @@ describe("BlogPost integration tests:", () => {
       }
 
       expect(res.status).toHaveBeenCalledWith(204);
-      expect(res.json).toHaveBeenCalledWith({
-        message: responseMessages.POST_DELETED,
-      });
     });
 
     const idInvalidCases = [
